@@ -1,30 +1,30 @@
-  # This file tells Render how to build and deploy your services.
-  services:
-    # A private service for the backend
-    - type: private
-      name: backend
-      env: docker
-      # The build context for the backend Dockerfile
-      dockerContext: ./backend
-      # The path to the backend's Dockerfile
-      dockerfilePath: ./backend/Dockerfile
-      # Optional: Add a health check for more robust startup.
-      # This requires a /healthz endpoint in your backend that returns a 200 status.
-      healthCheckPath: /healthz
-      # Define environment variables for the backend
-      envVars:
-        - key: MONGO_URI
-          # This tells Render to get the value from a secret you'll create
-          # in the Render dashboard. This keeps your password safe.
-          fromSecret: true
+# This file tells Render how to build and deploy your services.
+services:
+  # A private service for the backend
+  - type: private
+    name: backend
+    env: docker
+    # The build context for the backend Dockerfile
+    dockerContext: ./backend
+    # The path to the backend's Dockerfile
+    dockerfilePath: ./backend/Dockerfile
+    # Optional: Add a health check for more robust startup.
+    # This requires a /healthz endpoint in your backend that returns a 200 status.
+    healthCheckPath: /healthz
+    # Define environment variables for the backend
+    envVars:
+      - key: MONGO_URI
+        # This tells Render to get the value from a secret you'll create
+        # in the Render dashboard. This keeps your password safe.
+        fromSecret: true
 
-    # A web service for the frontend
-    - type: web
-      name: frontend
-      env: docker
-      # The path to the frontend's Dockerfile
-      dockerfilePath: ./frontend/Dockerfile
-      # The build context for the frontend Dockerfile
-      dockerContext: ./frontend
-      # Health check to ensure the service is running
-      healthCheckPath: /
+  # A web service for the frontend
+  - type: web
+    name: frontend
+    env: docker
+    # The path to the frontend's Dockerfile
+    dockerfilePath: ./frontend/Dockerfile
+    # The build context for the frontend Dockerfile
+    dockerContext: ./frontend
+    # Health check to ensure the service is running
+    healthCheckPath: /
