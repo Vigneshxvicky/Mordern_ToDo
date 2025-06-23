@@ -6,7 +6,7 @@ services:
     env: docker
     # The build context for the backend Dockerfile
     dockerContext: ./backend
-    # The path to the backend's Dockerfile
+    # The path to the backend's Dockerfileq
     dockerfilePath: ./backend/Dockerfile
     # Optional: Add a health check for more robust startup.
     # This requires a /healthz endpoint in your backend that returns a 200 status.
