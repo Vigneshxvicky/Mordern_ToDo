@@ -1,0 +1,14 @@
+services:
+  backend:
+    build: ./backend
+    # No longer needs to be exposed to the host.
+    # The frontend's Nginx will proxy requests to it.
+    env_file:
+      - .env # Load environment variables from .env file
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80" # Expose the frontend/Nginx on the standard HTTP port
+    depends_on:
+      - backend # Wait for the backend service to start first
