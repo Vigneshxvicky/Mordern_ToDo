@@ -2,9 +2,9 @@
 # This stage is dedicated to installing npm packages. It will be cached by Docker
 # and only re-run if package.json or package-lock.json changes.
 FROM node:20-alpine AS deps
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm ci --only=production
+WORKDIR /usr/src/app 
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
 
 # Stage 2: Production image
 # This stage builds the final image. It copies the pre-installed dependencies
