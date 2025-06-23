@@ -1,11 +1,16 @@
 # This file tells Render how to build and deploy your services.
 services:
   # A private service for the backend
-  - type: pvt
+  - type: private
     name: backend
     env: docker
+    # The build context for the backend Dockerfile
+    dockerContext: ./backend
     # The path to the backend's Dockerfile
     dockerfilePath: ./backend/Dockerfile
+    # Optional: Add a health check for more robust startup.
+    # This requires a /healthz endpoint in your backend that returns a 200 status.
+    healthCheckPath: /healthz
     # Define environment variables for the backend
     envVars:
       - key: MONGO_URI
