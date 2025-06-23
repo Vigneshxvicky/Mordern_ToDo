@@ -14,11 +14,14 @@ app.use(bodyParser.json());
 // API routes
 app.use('/api/todos', todoRoutes);
 
+// Get MongoDB URI from environment variables
+const MONGODB_URI = process.env.MONGO_URI;
+
 // MongoDB connection (ensure your MongoDB server is running)
 mongoose
-  .connect('mongodb://localhost:27017/todoapp', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+  .connect(MONGODB_URI, {
+    // useNewUrlParser and useUnifiedTopology are deprecated in Mongoose 6.x and later
+    // You can remove them if you are using a recent Mongoose version (7.x is current)
   })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
